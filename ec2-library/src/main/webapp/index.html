@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>EC2 Bibliothek</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="library.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", runVue, false);
+</script>
+</head>
+<body>
+
+	<div id="library">
+		<h1>{{ message }}</h1>
+
+		<div>
+			<ol>
+				<li v-for="book in books">{{ book.title }}</li>
+			</ol>
+			<br />
+
+			<button v-on:click="isNewBookFormVisible">Neues Buch</button>
+			<div v-if="showNewBookForm">
+				<input v-model="newBook.title" placeholder="Titel" />
+				<button v-on:click="saveBook">Speichern</button>
+			</div>
+		</div>
+
+		<div>
+		<button v-on:click="loadUsers">Benutzer laden</button>
+		<ol>
+			<li v-for="user in users">{{ user.name }}</li>
+		</ol>
+		</div>
+
+		<div v-if="restError">{{ restError }}</div>
+	</div>
+</body>
+</html>
