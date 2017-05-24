@@ -131,9 +131,20 @@
 	<profiles>
 		<profile>
 			<id>ec2</id>
-			<properties>
-				<swarm.http.port>80</swarm.http.port>
-			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.wildfly.swarm</groupId>
+						<artifactId>wildfly-swarm-plugin</artifactId>
+						<version>${version.wildfly.swarm}</version>
+						<configuration>
+							<properties>
+								<swarm.http.port>80</swarm.http.port>
+							</properties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 		<profile>
 			<id>mysql</id>
