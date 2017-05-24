@@ -12,7 +12,7 @@ function runVue() {
 		methods: {
 			loadBooks : function() {
 		        var vm = this
-		        axios.get('http://localhost:8080/rest/book')
+		        axios.get('http://52.57.232.44/rest/book')
 		          .then(function (response) {
 		            vm.books = response.data.books
 		          })
@@ -22,7 +22,7 @@ function runVue() {
 			},
 			loadUsers : function() {
 		        var vm = this
-		        axios.get('http://localhost:8080/rest/user')
+		        axios.get('http://52.57.232.44/rest/user')
 		          .then(function (response) {
 		            vm.users = response.data.users
 		          })
