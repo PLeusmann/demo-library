@@ -15,38 +15,11 @@
         http://xmlns.jcp.org/xml/ns/persistence
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="primary">
-		<!-- If you are running in a production environment, add a managed data 
-			source, this example data source is just for development and testing! -->
-		<!-- The datasource is deployed as <EAR>/META-INF/Indikatorenmonitoring-ds.xml, 
-			you can find it in the source at ear/src/main/application/META-INF/Indikatorenmonitoring-ds.xml -->
-		<jta-data-source>java:jboss/datasources/EC2-Library-MySQLDS</jta-data-source>
-		
-		<!-- 
-		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
-		 -->
-		
 		<properties>
 			<!-- Properties for Hibernate -->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="false" />
 
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-<!-- 
-
-
-			<property name="hibernate.cache.use_second_level_cache" value="true" />
-			<property name="hibernate.cache.use_query_cache" value="true" />
- -->
-			
-			<!-- Infinispan settings -->
-			<property name="hibernate.transaction.manager_lookup_class"   value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
-			<property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.CMTTransactionFactory"/>
-			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.infinispan.InfinispanRegionFactory" />
-
-			<!-- 
-			<property name="hibernate.cache.infinispan.statistics" value="true"/>
-			<property name="hibernate.generate_statistics" value="true"/>
-			 --> 
 		</properties>
 	</persistence-unit>
 </persistence>

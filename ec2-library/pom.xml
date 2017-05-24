@@ -15,6 +15,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 	</properties>
 
 	<repositories>
@@ -58,6 +59,11 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
+				<configuration> <filters> <filter>src/main/webapp/WEB-INF/ec2-library-ds.xml</filter> 
+				</filters> <webResources> <resource> <directory>src/main/webapp</directory> 
+				<filtering>true</filtering> </resource> </webResources> </configuration> 
+				</plugin> -->
 		</plugins>
 	</build>
 
@@ -117,9 +123,40 @@
 			<artifactId>cdi-config</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${version.mysql}</version>
+			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>datasources</artifactId>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>ec2</id>
+			<properties>
+				<swarm.http.port>80</swarm.http.port>
+			</properties>
+		</profile>
+		<profile>
+			<id>mysql</id>
+			<dependencies>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>${version.mysql}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>h2</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>1.4.195</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>
