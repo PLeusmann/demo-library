@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>users-service</artifactId>
-	<name>SWE Training 1 Users Service</name>
+	<artifactId>rental-service</artifactId>
+	<name>SWE Training 1 Rental Service</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -66,7 +66,7 @@
 					<apiSources>
 						<apiSource>
 							<springmvc>false</springmvc>
-							<locations>de.conet.swe.aws.library.users.rest.resources</locations>
+							<locations>de.conet.swe.aws.library.rental.rest.resources</locations>
 							<basePath>/rest</basePath>
 							<host>${swarm.hostname}:${swarm.port}</host>
 							<info>
@@ -164,7 +164,7 @@
 			</activation>
 			<properties>
 				<swarm.hostname>localhost</swarm.hostname>
-				<swarm.port>8081</swarm.port>
+				<swarm.port>8083</swarm.port>
 			</properties>
 		</profile>
 		<profile>

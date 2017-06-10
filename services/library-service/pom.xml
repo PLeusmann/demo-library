@@ -72,7 +72,7 @@
 								<title>${project.name}</title>
 								<version>${project.version}</version>
 							</info>
-							<swaggerDirectory>${project.build.directory}/${project.artifactId}/</swaggerDirectory>
+							<swaggerDirectory>${basedir}/src/main/webapp/</swaggerDirectory>
 						</apiSource>
 					</apiSources>
 				</configuration>

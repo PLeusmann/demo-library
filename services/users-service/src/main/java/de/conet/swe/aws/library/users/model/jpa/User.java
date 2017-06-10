@@ -4,9 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "person.all", query = "select p from User p") })
+@XmlRootElement
+@NamedQueries({ @NamedQuery(name = "user.all", query = "select p from User p") })
 public class User {
 
 	@Id

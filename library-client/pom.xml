@@ -4,7 +4,7 @@
 	<artifactId>library-client</artifactId>
 
 	<properties>
-		<yaml.file>${project.basedir}/../library-service/target/library-service/swagger.json</yaml.file>
+		<yaml.file>${project.basedir}/../services/library-service/target/library-service/swagger.json</yaml.file>
 		<generated-sources-path>${project.build.directory}/generated-sources</generated-sources-path>
 		<generated-sources-java-path>main/java</generated-sources-java-path>
 		<swagger-annotations-version>1.5.8</swagger-annotations-version>
