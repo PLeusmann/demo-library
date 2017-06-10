@@ -6,6 +6,13 @@
 	<name>SWE Training 1 Library Service</name>
 	<packaging>war</packaging>
 
+	<parent>
+		<groupId>de.conet.swe.aws.library</groupId>
+		<artifactId>services</artifactId>
+		<version>1.0.0</version>
+		<relativePath>..</relativePath>
+	</parent>
+
 	<properties>
 		<version.wildfly.swarm>2017.5.0</version.wildfly.swarm>
 		<version.mysql>6.0.5</version.mysql>
@@ -199,11 +206,60 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<profile>
+			<id>docker</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<configuration>
+							<images>
+								<image>
+									<name>${project.build.finalName}</name>
+									<run>
+										<ports>
+											<port>${swarm.port}:${swarm.port}</port>
+										</ports>
+									</run>
+									<build>
+										<from>java:openjdk-8-jdk</from>
+										<ports>
+											<port>${swarm.port}</port>
+										</ports>
+										<assembly>
+											<basedir>/</basedir>
+											<inline>
+												<files>
+													<file>
+														<source>${project.build.directory}/${project.artifactId}-swarm.jar</source>
+														<outputDirectory>/opt</outputDirectory>
+													</file>
+												</files>
+											</inline>
+										</assembly>
+										<entryPoint>
+											<shell>java -jar /opt/${project.artifactId}-swarm.jar</shell>
+										</entryPoint>
+									</build>
+								</image>
+							</images>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
-	<parent>
-		<groupId>de.conet.swe.aws.library</groupId>
-		<artifactId>services</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
-	</parent>
+
 </project>

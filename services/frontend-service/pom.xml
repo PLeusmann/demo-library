@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>frontend-service</artifactId>
-	<name>SWE Training 1 Users Service</name>
+	<name>SWE Training 1 Frontend Service</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -38,7 +38,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>demo</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.wildfly.swarm</groupId>
@@ -71,7 +71,7 @@
 						</goals>
 						<configuration>
 							<language>javascript</language>
-							<inputSpec>${basedir}/../library-service/target/library-service/swagger.json</inputSpec>
+							<inputSpec>${basedir}/../library-service/src/main/webapp/swagger.json</inputSpec>
 							<output>${basedir}/src/main/webapp/generated/library</output>
 						</configuration>
 					</execution>
@@ -162,11 +162,65 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<profile>
+			<id>docker</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<configuration>
+							<images>
+								<image>
+									<name>${project.build.finalName}</name>
+									<run>
+										<ports>
+											<port>${swarm.port}:${swarm.port}</port>
+										</ports>
+									</run>
+									<build>
+										<from>java:openjdk-8-jdk</from>
+										<ports>
+											<port>${swarm.port}</port>
+										</ports>
+										<assembly>
+											<basedir>/</basedir>
+											<inline>
+												<files>
+													<file>
+														<source>${project.build.directory}/${project.artifactId}-swarm.jar</source>
+														<outputDirectory>/opt</outputDirectory>
+													</file>
+												</files>
+											</inline>
+										</assembly>
+										<entryPoint>
+											<shell>java -jar /opt/${project.artifactId}-swarm.jar</shell>
+										</entryPoint>
+									</build>
+								</image>
+							</images>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 	<parent>
 		<groupId>de.conet.swe.aws.library</groupId>
 		<artifactId>services</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>..</relativePath>
 	</parent>
 </project>
