@@ -15,4 +15,73 @@
 		<module>users-service</module>
 		<module>rental-service</module>
 	</modules>
+
+	<profiles>
+		<profile>
+			<id>docker</id>
+			<activation>
+				<file><missing>.ignoreDocker</missing></file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<configuration>
+							<images>
+								<image>
+									<name>${project.build.finalName}</name>
+									<run>
+										<ports>
+											<port>${swarm.port}:${swarm.port}</port>
+										</ports>
+									</run>
+									<build>
+										<from>java:openjdk-8-jdk</from>
+										<ports>
+											<port>${swarm.port}</port>
+										</ports>
+										<assembly>
+											<basedir>/</basedir>
+											<inline>
+												<files>
+													<file>
+														<source>${project.build.directory}/${project.artifactId}-swarm.jar</source>
+														<outputDirectory>/opt</outputDirectory>
+													</file>
+												</files>
+											</inline>
+										</assembly>
+										<entryPoint>
+											<shell>java -jar /opt/${project.artifactId}-swarm.jar</shell>
+										</entryPoint>
+									</build>
+								</image>
+							</images>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>pre-integration-test</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+								</goals>
+							</execution>
+							<execution>
+								<id>post-integration-test</id>
+								<phase>post-integration-test</phase>
+								<goals>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
