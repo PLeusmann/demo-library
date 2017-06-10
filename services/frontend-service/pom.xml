@@ -136,7 +136,7 @@
 			<id>ec2</id>
 			<properties>
 				<swarm.hostname>library.library.swe.local</swarm.hostname>
-				<swarm.port>8080</swarm.port>
+				<swarm.port>80</swarm.port>
 			</properties>
 		</profile>
 		<profile>
