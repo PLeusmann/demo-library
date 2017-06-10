@@ -180,7 +180,7 @@
 		<profile>
 			<id>ec2</id>
 			<properties>
-				<swarm.hostname>library.library.swe.local</swarm.hostname>
+				<swarm.hostname>swe-test-library-service.eu-central-1.elasticbeanstalk.com</swarm.hostname>
 				<swarm.internal.port>8080</swarm.internal.port>
 				<swarm.external.port>80</swarm.external.port>
 			</properties>
