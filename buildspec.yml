@@ -3,7 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - mvn -Pec2 -Pdocker -Ph2 -fn clean compile && mvn -Pec2 -Pdocker -Ph2 generate-sources package install
+      - mvn -Pec2 -Pdocker -Ph2 -fn clean compile && mvn -Pec2 -Pdocker -Ph2 generate-sources package
 
 artifacts:
   files:
