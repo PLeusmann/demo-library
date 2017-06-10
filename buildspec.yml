@@ -3,7 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - mvn -Pec2 -Pdocker -Ph2 -fn clean compile && mvn -DDOCKER_REGISTRY=452308943737.dkr.ecr.eu-central-1.amazonaws.com/swe/aws-demo -Pec2 -Pdocker -Ph2 generate-sources install
+      - mvn -Pec2 -Pdocker -Ph2 -fn clean compile && mvn -DDOCKER_REGISTRY=452308943737.dkr.ecr.eu-central-1.amazonaws.com/swe/aws-demo -Pec2 -Pdocker -Ph2 generate-sources
 
 artifacts:
   files:
