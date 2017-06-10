@@ -8,3 +8,7 @@ phases:
 artifacts:
   files:
     - services/library-service/target/library-service-swarm.jar
+    - services/frontend-service/target/frontend-service-swarm.jar
+    - services/rental-service/target/rental-service-swarm.jar
+    - services/users-service/target/users-service-swarm.jar
+    
