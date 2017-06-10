@@ -20,6 +20,7 @@
 		<profile>
 			<id>docker</id>
 			<activation>
+				<!-- Avoid building in services-project -->
 				<file><missing>.ignoreDocker</missing></file>
 			</activation>
 			<build>
@@ -33,13 +34,13 @@
 									<name>${project.build.finalName}</name>
 									<run>
 										<ports>
-											<port>${swarm.port}:${swarm.port}</port>
+											<port>${swarm.external.port}:${swarm.internal.port}</port>
 										</ports>
 									</run>
 									<build>
 										<from>java:openjdk-8-jdk</from>
 										<ports>
-											<port>${swarm.port}</port>
+											<port>${swarm.internal.port}</port>
 										</ports>
 										<assembly>
 											<basedir>/</basedir>

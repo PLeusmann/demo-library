@@ -53,7 +53,7 @@
 				<configuration>
 					<properties>
 						<java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
-						<swarm.http.port>${swarm.port}</swarm.http.port>
+						<swarm.http.port>${swarm.internal.port}</swarm.http.port>
 					</properties>
 				</configuration>
 				<executions>
@@ -74,7 +74,7 @@
 							<springmvc>false</springmvc>
 							<locations>de.conet.swe.aws.library.library.rest.resources</locations>
 							<basePath>/rest</basePath>
-							<host>${swarm.hostname}:${swarm.port}</host>
+							<host>${swarm.hostname}:${swarm.external.port}</host>
 							<info>
 								<title>${project.name}</title>
 								<version>${project.version}</version>
@@ -173,14 +173,16 @@
 			</activation>
 			<properties>
 				<swarm.hostname>localhost</swarm.hostname>
-				<swarm.port>8082</swarm.port>
+				<swarm.internal.port>8082</swarm.internal.port>
+				<swarm.external.port>${swarm.internal.port}</swarm.external.port>
 			</properties>
 		</profile>
 		<profile>
 			<id>ec2</id>
 			<properties>
 				<swarm.hostname>library.library.swe.local</swarm.hostname>
-				<swarm.port>80</swarm.port>
+				<swarm.internal.port>8080</swarm.internal.port>
+				<swarm.external.port>80</swarm.external.port>
 			</properties>
 		</profile>
 		<profile>
