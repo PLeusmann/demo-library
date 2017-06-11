@@ -171,7 +171,7 @@
 		<profile>
 			<id>ec2</id>
 			<properties>
-				<swarm.hostname>rental.library.swe.local</swarm.hostname>
+				<swarm.hostname>swe-training-rental-service.cloud.conet.de</swarm.hostname>
 				<swarm.internal.port>8080</swarm.internal.port>
 				<swarm.external.port>80</swarm.external.port>
 			</properties>
