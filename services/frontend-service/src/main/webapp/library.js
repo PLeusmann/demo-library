@@ -12,9 +12,9 @@ function runVue() {
 		methods: {
 			loadBooks : function() {
 		        var vm = this
-		        axios.get('http://52.57.232.44/rest/book')
+		        axios.get('https://1m4abxboc8.execute-api.eu-central-1.amazonaws.com/rest/book')
 		          .then(function (response) {
-		            vm.books = response.data.books
+		            vm.books = response.data
 		          })
 		          .catch(function (error) {
 		            vm.restError = error
@@ -22,9 +22,9 @@ function runVue() {
 			},
 			loadUsers : function() {
 		        var vm = this
-		        axios.get('http://52.57.232.44/rest/user')
+		        axios.get('https://1m4abxboc8.execute-api.eu-central-1.amazonaws.com/rest/user')
 		          .then(function (response) {
-		            vm.users = response.data.users
+		            vm.users = response.data
 		          })
 		          .catch(function (error) {
 		            vm.restError = error
@@ -36,7 +36,7 @@ function runVue() {
 			},
 			saveBook : function() {
 				var vm = this
-		        axios.post('http://localhost:8080/rest/book', vm.newBook)
+		        axios.post('https://1m4abxboc8.execute-api.eu-central-1.amazonaws.com/rest/book', vm.newBook)
 		          .then(function (response) {
 		            vm.loadBooks();
 		            this.isNewBookFormVisible = false;

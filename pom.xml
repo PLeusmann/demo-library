@@ -8,7 +8,7 @@
 
 	<modules>
 		<module>services</module>
-		<module>library-client</module>
+		
 	</modules>
 	<name>SWE Training 1 Demo Projekt</name>
 	
